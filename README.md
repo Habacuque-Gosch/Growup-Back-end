@@ -1,4 +1,4 @@
-<h1>REST API Users</h1>
+<h1>REST API Courses</h1>
 
 <h2>Bem vindo(ao) meu repositório</h2>
 
@@ -10,21 +10,13 @@
  
 ## Features
 
-:heavy_check_mark: `Funcionalidade 1:`  Controle de usuários
-
-:heavy_check_mark: `Funcionalidade 2:` Buscar por usuarios via parametro de url
-
-:heavy_check_mark: `Funcionalidade 3:` Criar usuarios
-
-:heavy_check_mark: `Funcionalidade 4:` Editar dados dos usuarios
-
-:heavy_check_mark: `Funcionalidade 5:` Deletar usuarios
+<!-- :heavy_check_mark: `Funcionalidade 1:`  Controle de usuários -->
 
  
 <div align='center'>
     <h1>Aplicação<h1>
 </div>
-<a href="https://rest-api-users-y18n.onrender.com/api/?format=json">Acesso a REST API Users</a>
+**<a href="https://rest-api-users-y18n.onrender.com/api/?format=json">Acesso a REST API Users</a>**
             
 ## Ferramentas utilizadas
 
