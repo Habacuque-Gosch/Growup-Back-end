@@ -4,6 +4,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 from apps.courses.urls import router
 
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('apps.courses.urls')),
