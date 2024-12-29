@@ -18,7 +18,15 @@ class CourseViewSet(viewsets.ModelViewSet):
         course = self.get_object()
         serializer = ReviewSerializer(course.reviews.all(), many=True)
         return Response(serializer.data)
-    
+
+
+''' Viewset defaut layout
 class ReviewViewSet(viewsets.ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+'''
+
+# Viewset with mixins
+class ReviewViewSet(mixins.ListModelMixin ,mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
