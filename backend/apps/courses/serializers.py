@@ -18,10 +18,10 @@ class CourseSerializer(serializers.ModelSerializer):
     # NESTED RELATIONSHIP - 0-0
     # reviews = ReviewSerializer(many=True, read_only=True)
 
-    # HYPERLINK RELATED FIELD
+    # HYPERLINK RELATED FIELD - ;-;
     # reviews = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='review-detail')
 
-    # PRIMARYKEY RELATED FIELD
+    # PRIMARYKEY RELATED FIELD - :)
     reviews = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
