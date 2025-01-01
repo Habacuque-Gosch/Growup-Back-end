@@ -1,4 +1,4 @@
-<h1>REST API Courses</h1>
+<h1>App</h1>
 
 <h2>Bem vindo(ao) meu repositório</h2>
 
