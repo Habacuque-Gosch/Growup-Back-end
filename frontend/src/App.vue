@@ -1,5 +1,6 @@
 <script setup>
-import Index from './components/courses/index.vue'
+import Index from './components/user/courses/index.vue'
+import Home from './components/user/home/index.vue'
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import Index from './components/courses/index.vue'
   <main>
 
     <Index></Index>
+    <Home></Home>
     <RouterLink to="/index">Go courses</RouterLink>
 
   </main>
