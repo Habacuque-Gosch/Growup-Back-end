@@ -1,89 +1,45 @@
 
 <template>
   <div>
-    <p>Courses</p>
+    <p>Cursos</p>
 
-    <p>{{ courses }}</p>
+    <div v-if="apiData">
 
-    <ul>
-      <li v-for="course in courses" :key="course.id">
-        <p>{{ course.title }} - {{ course.slug }}</p>
-      </li>
-    </ul>
+      <ul>
+        <li v-for="course in apiData" :key="course.id">
+          <p>Nome do curso: {{ course.title }}</p><p>Link: {{ course.slug }}</p>
+        </li>
+      </ul>
+
+    </div>
+
+    <div v-else>Nenhum curso encontrado</div>
 
   </div>
 </template>
 
 <script>
+import { getAPI } from '@/helpers/axios-api'
 
-  import axios from 'axios'
 
-  export default {
-    data() {
-      return {
-        courses: []
-      }
-
-    },
-    mounted() {
-      axios.get('http://127.0.0.1:8000/api/v1/courses/?format=json')
-        .then((response) => {
-          this.courses = response.data
-          console.log('data queryset app:' + this.courses)
-        }).catch((err) =>{
-          console.log('Erro app: ' + err)
-        })
+export default {
+  data() {
+    return {
+      apiData: []
     }
-  }
+  },
+  mounted() {
+    getAPI.get('courses/?format=json')
+    .then(res => {
 
+      this.apiData = res.data.results
+      console.log('Courses API has received data: '+ this.apiData)
+
+    })
+
+    .catch(err => {
+      console.log('erro get courses API: ' + err)
+    })
+  }
+}
 </script>
-
-
-
-<!-- TEMPLATE
-<template>
-  <div>
-    <p>cursos</p>
-
-    <ul>
-      <li v-for="course in courses" :key="course.id">
-        <p>{{ course.title }} - {{ course.slug }}</p>
-        <p>{{ courses }}</p>
-      </li>
-    </ul>
-
-  </div>
-</template>
-<script>
-
-
-  import { ref, onMouted } from 'vue'
-  import axios from 'axios'
-  // import { useRouter } from 'vue-router'
-
-  export default {
-    setup() {
-
-      const courses = ref([])
-      
-      const ListAllCourses = async () => {
-
-        try {
-
-          const response = await axios.get('http://127.0.0.1:8000/api/v1/courses/?format=json')
-          courses.value = response.data
-          console.log('data queryset app:' + courses)
-
-        } catch(error) {
-          console.log('Erro app: ' + error)
-        }
-          
-      }
-
-      // onMouted(ListAllCourses)
-      return courses
-
-    }
-  }
-
-</script> -->
