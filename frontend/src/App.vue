@@ -5,12 +5,17 @@ import Index from './components/courses/index.vue'
 <template>
 
 
-  <div>
+  <main>
 
     <Index></Index>
+    <RouterLink to="/index">Go courses</RouterLink>
 
-  </div>
+  </main>
 
 </template>
+
+<script>
+
+</script>
 
 

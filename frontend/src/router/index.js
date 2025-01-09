@@ -4,10 +4,10 @@ import ListCourses from '../components/courses/index.vue'
 
 const routes = [
     {
-        path: '/',
+        path: '/index',
         name: 'index',
         component: ListCourses,
-    }
+    },
 ]
 
 const router = createRouter({
