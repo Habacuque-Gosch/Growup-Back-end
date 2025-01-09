@@ -116,8 +116,15 @@ CORS_ALLOW_ORIGINS = [
     'http://localhost:5173'
 ]
 
-CORS_ALLOWED_HEADERS = list(default_headers) + [
+CORS_ALLOW_HEADERS = list(default_headers) + [
     'contenttype',
+]
+
+# CORS_ALLOW_HEADERS = "*"
+
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:8000',
+    'http://localhost:5173'
 ]
 
 REST_FRAMEWORK = {
