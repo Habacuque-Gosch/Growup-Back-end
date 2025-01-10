@@ -1,12 +1,20 @@
 <template>
 
-  <main>
+    <h2>Login</h2>
 
-    <p>Login page</p>
+    <div class="card">
 
-  </main>
-    
+        <div class="card-body">
 
+            <label for="email"></label>
+            <input type="text" placeholder="Digite seu email" class="form-control">
+
+            <label for="senha"></label>  
+            <input type="password" placeholder="Digite sua senha" class="form-control">
+
+        </div>
+
+    </div>
 
 </template>
 

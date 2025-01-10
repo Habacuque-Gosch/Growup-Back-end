@@ -1,21 +1,18 @@
 
 <template>
-  <div>
-    <p>Cursos</p>
 
     <div v-if="apiData">
 
-      <ul>
-        <li v-for="course in apiData" :key="course.id">
-          <p>Nome do curso: {{ course.title }}</p><p>Link: {{ course.slug }}</p>
-        </li>
-      </ul>
+        <ul>
+            <li v-for="course in apiData" :key="course.id">
+                <p>Nome do curso: {{ course.title }}</p><p>Link: {{ course.slug }}</p>
+            </li>
+        </ul>
 
     </div>
 
     <div v-else>Nenhum curso encontrado</div>
 
-  </div>
 </template>
 
 <script>
