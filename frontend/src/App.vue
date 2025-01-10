@@ -1,14 +1,21 @@
 <script setup>
-  import Index from './components/user/courses/index.vue'
-  import Home from './components/user/home/index.vue'
+  import { RouterView } from 'vue-router';
+  import Index from './views/courses/index.vue'
+  import Home from './views/user/home/index.vue'
 </script>
 
 <template>
 
   <main>
 
-    <Home></Home>
-    <Index></Index>
+    <RouterView></RouterView>
+    <RouterLink to="/">a</RouterLink>
+    <br>
+    <RouterLink to="/index">a</RouterLink>
+    <br>
+    <RouterLink to="/user/login">a</RouterLink>
+    <br>
+    <RouterLink to="/user/register">a</RouterLink>
 
   </main>
 
