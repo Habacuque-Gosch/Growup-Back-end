@@ -12,6 +12,19 @@ const routes = [
         name: 'home',
         component: Home,
     },
+    // {
+    //     path: '/category',
+    //     name: 'category',
+    //     component: Category,
+    //     children: [
+    //         {
+    //            path: 'subcategory',
+    //            name: 'subCategory',
+    //            component: ChildComponent,
+    //         },
+    //         // other nested routes
+    //     ]
+    // },
     {
         path: '/user/login',
         name: 'login',
