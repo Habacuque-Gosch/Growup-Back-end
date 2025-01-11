@@ -1,16 +1,18 @@
 <script setup>
-  import Index from './components/user/courses/index.vue'
-  import Home from './components/user/home/index.vue'
+    import { RouterView } from 'vue-router';
+    import Navbar from './components/partials/navbar.vue';
 </script>
 
 <template>
 
-  <main>
+    <Navbar></Navbar>
 
-    <Home></Home>
-    <Index></Index>
+    <main class="container mt-4">
 
-  </main>
+        <RouterLink to="/">Início</RouterLink>
+        <RouterView></RouterView>
+
+    </main>
 
 </template>
 

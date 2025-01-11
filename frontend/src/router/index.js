@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
-import Home from '../components/user/home/index.vue'
-import Login from '../components/user/login/login.vue'
-import Register from '../components/user/register/register.vue'
-import ListCourses from '../components/user/courses/index.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../views/user/home/index.vue'
+import Login from '../views/user/login/login.vue'
+import Register from '../views/user/register/register.vue'
+
 
 
 
@@ -25,7 +25,12 @@ const routes = [
     {
         path: '/index',
         name: 'index',
-        component: ListCourses,
+        component: () => import('../views/courses/index.vue'),
+    },
+    {
+        path: '/course/details/:id',
+        name: 'courses',
+        component: () => import('../views/courses/details_course.vue'),
     },
 
 ]
