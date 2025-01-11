@@ -28,7 +28,7 @@
 
 <script>
 
-    import { getAPI } from '@/helpers/axios-api'
+    import { getAPI } from '@/api/axios_api'
 
     export default {
         data() {
