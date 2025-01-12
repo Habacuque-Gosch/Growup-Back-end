@@ -16,40 +16,32 @@
 
 <script setup>
 
-    import {useRoute} from 'vue-router'
+    import { useRouter, useRoute } from 'vue-router'
+    import { getAPI } from '@/api/axios_api'
+    import { ref, onMounted } from 'vue'
 
-    const courseRouter = useRoute()
+    // const courseRouter = useRouter()
+    // const courseId = courseRouter.currentRoute.value.params.id
+    const courseRoute = useRoute()
+    const courseId = courseRoute.params.id
 
-    const courseId = courseRouter.params
+    console.log(courseId)
 
-    console.log(courseId['id'])
+    const courseData = ref({})
 
-</script>
-
-<script>
-
-    import { getAPI } from '@/helpers/axios-api'
-
-    export default {
-        data() {
-            return {
-                courseData: [],
-            }
-        },
-        mounted() {
-            getAPI.get(`courses/1?format=json`)
+    onMounted(()=> {
+        getAPI.get(`courses/${courseId}?format=json`)
             .then(res => {
 
-                this.courseData = res.data
+                courseData.value = res.data
 
-                console.log('Courses API has received data: '+ this.courseData)
+                console.log('Courses API has received data')
 
             })
 
             .catch(err => {
                 console.log('erro get courses API: ' + err)
             })
-        }
-    }
+    })
 
 </script>

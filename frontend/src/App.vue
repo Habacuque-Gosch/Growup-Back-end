@@ -1,5 +1,4 @@
 <script setup>
-    import { RouterView } from 'vue-router';
     import Navbar from './components/partials/navbar.vue';
 </script>
 
@@ -7,13 +6,17 @@
 
     <Navbar></Navbar>
 
-    <main class="container mt-4">
+    <main class="container mt-4" id="app">
 
-        <RouterLink to="/">Início</RouterLink>
+        <!-- <RouterLink to="/">Início</RouterLink> -->
         <RouterView></RouterView>
 
-    </main>
+    </main> 
 
 </template>
+
+<style>
+
+</style>
 
 
