@@ -14,7 +14,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
                 'localhost',
-                'rest-api-users-y18n.onrender.com',
+                'appelearning.onrender.com',
                 ]
 
 
@@ -112,7 +112,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ORIGINS = [
     'http://127.0.0.1:8000',
-    'https://rest-api-users-y18n.onrender.com',
+    'https://appelearning.onrender.com/',
     'http://localhost:5173'
 ]
 
@@ -124,7 +124,8 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 
 CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:8000',
-    'http://localhost:5173'
+    'http://localhost:5173',
+    'https://appelearning.onrender.com/'
 ]
 
 REST_FRAMEWORK = {
