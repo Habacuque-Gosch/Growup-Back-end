@@ -10,7 +10,7 @@ from rest_framework.response import Response
 
 
 class CourseViewSet(viewsets.ModelViewSet):
-    queryset = Course.objects.all()
+    queryset = Course.objects.all().order_by('-id')
     serializer_class = CourseSerializer
 
     @action(detail=True, methods=['GET'])
