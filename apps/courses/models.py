@@ -12,7 +12,7 @@ class Base(models.Model):
 class Course(Base):
 
     title = models.CharField(max_length=255, blank=False, null=False, default='')
-    slug = models.URLField(unique=True)
+    slug = models.CharField(max_length=100, unique=True)
 
     class Meta:
         verbose_name = 'Course'
