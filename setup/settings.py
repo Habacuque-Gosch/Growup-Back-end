@@ -6,17 +6,17 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
                 'localhost',
                 'appelearning.onrender.com',
                 ]
 
+AUTH_USER_MODEL = 'users.CustomUser'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -93,10 +93,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-# AUTH_USER_MODEL = 'apps.users'
-# AUTH_USER_MODEL = 'rest_api.models.Item'
-
-
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
@@ -146,4 +142,41 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 50
 }
 
+# LOGIN_REDIRECT_URL = '/'
+# lOGOUT_REDIRECT_URL = '/'
 
+
+# PAYMENT KEYS
+# STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY', 'nullkey')
+# STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'nullkey')
+# STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'nullkey')
+
+
+# SECURITY/GPO and PROD
+ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
+if ENVIRONMENT == 'production':
+    print('**######### PROD #########**')
+    SECRET_KEY = str(os.getenv('SECRET_KEY'))
+    DEBUG = False
+
+    # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    # EMAIL_HOST = 'smtp.gmail.com'
+    # EMAIL_USE_TLS = True
+    # EMAIL_PORT = 587
+    # EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+    # EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+    # SESSION_COOKIE_SECURE = True
+    # CSRF_COOKIE_SECURE = True
+    # SECURE_BROWSER_XSS_FILTER = True
+    # SECURE_CONTENT_TYPE_NOSNIFF = True
+    # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    # SECURE_HSTS_SECONDS = 31536000
+    # SECURE_REDIRECT_EXEMPT = []
+    # SECURE_SSL_REDIRECT = True
+    # SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTOCOL", "https")
+    # SECURE_CONTENT_TYPE_NOSNIFF = True
+    # SECURE_HSTS_PRELOAD = True
+    # X_FRAME_OPTIONS = 'SAMEORING'
+    # CSP_DEFAULT_SRC = ("'self'", "https://polyfill.io")
+    # CSP_STYLE_SRC = ("'unsafe-inline'", "https:")
