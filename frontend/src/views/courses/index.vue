@@ -20,11 +20,11 @@
 
         <div class="card" v-for="course in apiData" :key="course.id">
             <div class="card-body">
-                <RouterLink :to="{name: 'courses', params: {id: course.id}}">Nome do curso: {{ course.title }}</RouterLink>
+                <RouterLink :to="{name: 'course_details', params: {id: course.id}}">Nome do curso: {{ course.title }}</RouterLink>
                 <p>Link: {{ course.slug }}</p>
-                <RouterLink :to="{name: 'courses', params: {id: course.id}}" class="btn btn-success"><i class="bi bi-eye"></i>Ver curso</RouterLink>
-                <RouterLink :to="{name: 'courses', params: {id: course.id}}" class="btn btn-danger"><i class="bi bi-trash"></i>Deletar curso</RouterLink>
-                <RouterLink :to="{name: 'courses', params: {id: course.id}}" class="btn btn-primary"><i class="bi bi-bookmark"></i>Salvar curso</RouterLink>
+                <RouterLink :to="{name: 'course_details', params: {id: course.id}}" class="btn btn-success"><i class="bi bi-eye"></i>Ver curso</RouterLink>
+                <RouterLink :to="{name: 'delete_course', params: {id: course.id}}" class="btn btn-danger"><i class="bi bi-trash"></i>Deletar curso</RouterLink>
+                <RouterLink :to="{name: 'course_details', params: {id: course.id}}" class="btn btn-primary"><i class="bi bi-bookmark"></i>Salvar curso</RouterLink>
             </div>
         </div>
 

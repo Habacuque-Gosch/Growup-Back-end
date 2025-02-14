@@ -35,20 +35,32 @@ const routes = [
         name: 'register',
         component: Register,
     },
+
+
     {
         path: '/index',
         name: 'index',
         component: () => import('../views/courses/Index.vue'),
     },
     {
-        path: '/course/details/:id',
-        name: 'courses',
+        path: '/course/details/:id/',
+        name: 'course_details',
         component: () => import('../views/courses/DetailsCourse.vue'),
     },
     {
         path: '/course/add-course/',
         name: 'add_course',
         component: () => import('../views/courses/AddCourse.vue')
+    },
+    // {
+    //     path: '/course/details/:id/',
+    //     name: 'edit_course',
+    //     component: () => import('../views/courses/DetailsCourse.vue'),
+    // },
+    {
+        path: '/course/delete-course/:id/',
+        name: 'delete_course',
+        component: () => import('../views/courses/DeleteCourse.vue')
     },
 
 ]

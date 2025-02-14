@@ -11,7 +11,7 @@
         <input type="text" placeholder="Slug do curso" v-model="newCourse.slug" required style="height: 60px; border-radius: 5px;">
 
         <label class="form-label">Creation</label>
-        <input type="text" placeholder="Slug do curso" v-model="newCourse.creation" required style="height: 60px; border-radius: 5px;">
+        <input type="date" placeholder="Slug do curso" v-model="newCourse.creation" required style="height: 60px; border-radius: 5px;">
 
         <button class="btn btn-success mt-4">Criar curso</button>
         <br>
