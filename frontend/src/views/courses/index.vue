@@ -1,20 +1,18 @@
 
 <template>
 
-    <main>
 
-        <h1>Bem vindo(a)</h1>
-        <div>
-            <form action="" class=" input-group mb-3 d-flex flex-row bd-highlight mb-3" method="POST">
+    <h1>Bem vindo(a)</h1>
+    <div>
+        <form action="" class=" input-group mb-3 d-flex flex-row bd-highlight mb-3" method="POST">
 
-                <input type="text" name="palavra" id="palavra" class="form-control" placeholder="Pesquise pelo título, categoria ou descrição de um post" aria-label="Recipient's username" aria-describedby="button-addon2" required>
-                <button class="btn btn-outline-secondary" id="button-addon2">Buscar </button>
+            <input type="text" name="palavra" id="palavra" class="form-control" placeholder="Pesquise pelo título, categoria ou descrição de um post" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+            <button class="btn btn-outline-secondary" id="button-addon2">Buscar </button>
 
-            </form>
-        </div>
-        <hr>
+        </form>
+    </div>
+    <hr>
 
-    </main>
 
     <h2>Cursos</h2>
 
@@ -37,7 +35,7 @@
 </template>
 
 <script>
-    import { getAPI } from '@/api/axios_api'
+    import { baseAPI } from '@/api/axios_api'
 
     export default {
         data() {
@@ -46,7 +44,7 @@
             }
         },
         mounted() {
-            getAPI.get('courses/?format=json')
+            baseAPI.get('courses/?format=json')
             .then(res => {
 
                 this.apiData = res.data.results

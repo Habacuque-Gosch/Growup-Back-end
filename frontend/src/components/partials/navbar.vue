@@ -25,6 +25,10 @@
                     <!-- <a href="" class="btn btn-danger">Logout <i class="bi bi-person-circle"></i></a> -->
 
                     <div class="">
+                        <RouterLink to="/course/add-course" class="btn btn-success mt-2">Criar curso<i class="bi bi-add"></i></RouterLink>
+                    </div>
+
+                    <div class="">
                         <RouterLink to="/user/login" class="btn btn-success mt-2">Login <i class="bi bi-person-circle"></i></RouterLink>
                         <RouterLink to="/user/register" class="btn btn-primary mt-2">Register <i class="bi bi-person-circle"></i></RouterLink>
                     </div>

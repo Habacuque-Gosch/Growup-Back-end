@@ -17,7 +17,7 @@
 <script setup>
 
     import { useRouter, useRoute } from 'vue-router'
-    import { getAPI } from '@/api/axios_api'
+    import { baseAPI } from '@/api/axios_api'
     import { ref, onMounted } from 'vue'
 
     // const courseRouter = useRouter()
@@ -30,7 +30,7 @@
     const courseData = ref({})
 
     onMounted(()=> {
-        getAPI.get(`courses/${courseId}?format=json`)
+        baseAPI.get(`courses/${courseId}?format=json`)
             .then(res => {
 
                 courseData.value = res.data
