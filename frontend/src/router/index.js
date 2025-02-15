@@ -7,11 +7,24 @@ import Register from '../views/user/register/register.vue'
 
 
 const routes = [
+
+    // ROUTERS USERS
     {
         path: '/',
         name: 'home',
         component: Home,
     },
+    {
+        path: '/user/login',
+        name: 'login',
+        component: Login,
+    },
+    {
+        path: '/user/register',
+        name: 'register',
+        component: Register,
+    },
+
     // {
     //     path: '/category',
     //     name: 'category',
@@ -25,18 +38,8 @@ const routes = [
     //         // other nested routes
     //     ]
     // },
-    {
-        path: '/user/login',
-        name: 'login',
-        component: Login,
-    },
-    {
-        path: '/user/register',
-        name: 'register',
-        component: Register,
-    },
 
-
+    // ROUTERS COURSES
     {
         path: '/index',
         name: 'index',

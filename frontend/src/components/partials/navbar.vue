@@ -1,39 +1,35 @@
-<script setup>
-
+<script>
 
 </script>
 
-
 <template>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Growup</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li> -->
-
-                    <!-- <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="">Categorias</a>
-                    </li> -->
-
-                    <!-- <a href="" class="btn btn-danger">Logout <i class="bi bi-person-circle"></i></a> -->
-
-                    <div class="">
-                        <RouterLink to="/course/add-course" class="btn btn-success mt-2">Criar curso<i class="bi bi-add"></i></RouterLink>
-                    </div>
-
-                    <div class="">
-                        <RouterLink to="/user/login" class="btn btn-success mt-2">Login <i class="bi bi-person-circle"></i></RouterLink>
-                        <RouterLink to="/user/register" class="btn btn-primary mt-2">Register <i class="bi bi-person-circle"></i></RouterLink>
-                    </div>
-
-                </ul>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <RouterLink to="/index" class="nav-link active" >Home</RouterLink>
+                </li>
+                <li class="nav-item">
+                    <RouterLink to="/course/add-course" class="nav-link">Criar curso<i class="bi bi-add"></i></RouterLink>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Profile
+                    </a>
+                    <ul class="dropdown-menu">
+                        <RouterLink to="/user/register" class="dropdown-item"><i class="bi bi-person"></i> Profile</RouterLink>
+                        <RouterLink to="/user/login" class="dropdown-item"><i class="bi bi-person-circle"></i> Login</RouterLink>
+                        <RouterLink to="/user/register" class="dropdown-item"><i class="bi bi-person-circle"></i> Register</RouterLink>
+                        <RouterLink to="/user/register" class="dropdown-item"><i class="bi bi-arrow-left"></i> Logout</RouterLink>
+                    </ul>
+                </li>
+            </ul>
             </div>
         </div>
     </nav>
