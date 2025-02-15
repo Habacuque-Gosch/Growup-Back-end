@@ -23,6 +23,7 @@
                 <RouterLink :to="{name: 'course_details', params: {id: course.id}}">Nome do curso: {{ course.title }}</RouterLink>
                 <p>Link: {{ course.slug }}</p>
                 <RouterLink :to="{name: 'course_details', params: {id: course.id}}" class="btn btn-success"><i class="bi bi-eye"></i>Ver curso</RouterLink>
+                <RouterLink :to="{name: 'edit_course', params: {id: course.id}}" class="btn btn-primary"><i class="bi bi-pencil"></i>Editar curso</RouterLink>
                 <RouterLink :to="{name: 'delete_course', params: {id: course.id}}" class="btn btn-danger"><i class="bi bi-trash"></i>Deletar curso</RouterLink>
                 <RouterLink :to="{name: 'course_details', params: {id: course.id}}" class="btn btn-primary"><i class="bi bi-bookmark"></i>Salvar curso</RouterLink>
             </div>

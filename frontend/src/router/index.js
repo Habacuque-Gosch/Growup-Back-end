@@ -52,11 +52,11 @@ const routes = [
         name: 'add_course',
         component: () => import('../views/courses/AddCourse.vue')
     },
-    // {
-    //     path: '/course/details/:id/',
-    //     name: 'edit_course',
-    //     component: () => import('../views/courses/DetailsCourse.vue'),
-    // },
+    {
+        path: '/course/edit-course/:id/',
+        name: 'edit_course',
+        component: () => import('../views/courses/EditCourse.vue'),
+    },
     {
         path: '/course/delete-course/:id/',
         name: 'delete_course',

@@ -29,7 +29,7 @@ import { useRouter } from 'vue-router';
 export default {
     setup(){
 
-        const newCourse = ref({title: '', slug: ''})
+        const newCourse = ref({title: '', slug: '', creation: ''})
         const errorMessage = ref('')
         const router = useRouter()
 
