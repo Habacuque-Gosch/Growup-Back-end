@@ -2,6 +2,7 @@
 
     <h1>Editar Course</h1>
     <br>
+    <p>aaa {{ courseData }}</p>
     <form @submit.prevent="editCourse" class="form-control row g-2 pt-4 pb-4">
 
         <label class="form-label">Titulo</label>
@@ -34,22 +35,8 @@ export default {
         const courseRoute = useRoute()
         const router = useRouter()
         const courseId = courseRoute.params.id
-
-        console.log(courseId)
-        const courseData = ''
-
-        courseData = baseAPI.get(`courses/${courseId}/`)
-        console.log('', courseData)
-        // .then(course => {
-        //     courseExists = true
-        //     courseData = course
-        //     console.log('course data', course)
-        //     router.push({name: 'edit_course', params: {id: courseId}})
-        // })
-        // .catch(error => {
-        //     errorMessage.value = 'Curso inexistente'
-        //     router.push({name: 'index'})
-        // })
+        
+        var courseData = ''
 
         const editCourse = async () => {
             try {
@@ -71,10 +58,24 @@ export default {
             }
         }
 
+        courseData = baseAPI.get(`courses/${courseId}/`)
+        .then(course => {
+            courseData = course.data
+            console.log(courseData)
+            // router.push({name: 'edit_course', params: {id: courseId}})
+            return courseData
+        })
+        .catch(error => {
+            errorMessage.value = 'Curso inexistente'
+            console.log('error: ', error)
+            router.push({name: 'index'})
+        })
+
         return {
             editCourseData,
             errorMessage,
-            editCourse
+            editCourse,
+            courseData
         }
     }
 }

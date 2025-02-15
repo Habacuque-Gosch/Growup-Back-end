@@ -1,7 +1,6 @@
 
 <template>
 
-
     <h1>Bem vindo(a)</h1>
     <div>
         <form action="" class=" input-group mb-3 d-flex flex-row bd-highlight mb-3" method="POST">
@@ -12,7 +11,6 @@
         </form>
     </div>
     <hr>
-
 
     <h2>Cursos</h2>
 
@@ -47,13 +45,8 @@
         mounted() {
             baseAPI.get('courses/?format=json')
             .then(res => {
-
                 this.apiData = res.data.results
-
-                console.log('Courses API has received data: '+ this.apiData)
-
             })
-
             .catch(err => {
                 console.log('erro get courses API: ' + err)
             })
