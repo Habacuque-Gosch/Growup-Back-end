@@ -1,7 +1,6 @@
 <template>
 
     <p v-if="errorMessages" class="alert alert-info" role="alert">{{ errorMessages }}</p>
-    <Message severity="success" variant="outlined">Success Message</Message>
 
 </template>
 
