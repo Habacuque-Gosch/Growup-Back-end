@@ -4,12 +4,12 @@ from .views import *
 
 
 urlpatterns = [
-    path('', home, name = 'home'),
-    path('login/', login, name = 'login'),
-    path('register/', register, name = 'cadastro'),
+    # path('', home, name = 'home'),
+    # path('login-user/', login_user, name = 'login'),
+    path('register-user/', register_user, name = 'register'),
     path('logout/', logout, name = 'logout'),
-    path('active-account/<uidb64>/<token>/', activate_account, name='activate_account'), 
-    path('desactivate-account/', desactivate_account, name = 'desactivate_account'),
+    # path('active-account/<uidb64>/<token>/', activate_account, name='activate_account'), 
+    # path('desactivate-account/', desactivate_account, name = 'desactivate_account'),
     # path('change-pass/', change_pass, name = 'change_pass'),
     # # path('forget-my-pass/', forget_my_pass, name = 'forget_my_pass'),
 
@@ -37,10 +37,3 @@ urlpatterns = [
     # path('success-checkout-plan/', success_buy_plan, name='success_buy_plan'),
 
 ]
-
-
-# htmx_urlpatterns = [
-#     path('check-projects', check_projects, name='check_projects')
-# ]
-
-# urlpatterns += htmx_urlpatterns
