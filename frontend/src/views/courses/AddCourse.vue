@@ -1,6 +1,6 @@
 <template>
 
-    <h1>Add Course</h1>
+    <h1>Criar curso</h1>
     <br>
     <form @submit.prevent="addCourse" class="form-control row g-2 pt-4 pb-4">
 

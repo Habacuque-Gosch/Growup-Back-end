@@ -43,7 +43,7 @@
             }
         },
         mounted() {
-            baseAPI.get('v2/courses/?format=json')
+            baseAPI.get('v2/courses/')
             .then(res => {
                 this.apiData = res.data.results
             })

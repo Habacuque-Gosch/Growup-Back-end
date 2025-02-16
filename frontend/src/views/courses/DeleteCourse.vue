@@ -22,25 +22,25 @@ console.log(courseId)
 
 onMounted(()=> {
     baseAPI.get(`v2/courses/${courseId}/`)
-        .then(response => {
+    .then(response => {
 
-            console.log('data: ', response.data.title)
+        console.log('data: ', response.data.title)
 
-            let config = {
-                headers: {
-                    Authorization: 'Token c2ef737289fabeae006a6b01c9ecb40aa088d046',
-                }
+        let config = {
+            headers: {
+                Authorization: 'Token c2ef737289fabeae006a6b01c9ecb40aa088d046',
             }
-            baseAPI.delete(`courses/${courseId}/`, config)
-            // console.log('requestss: ')
-            router.push({ name: 'index'})
+        }
+        baseAPI.delete(`courses/${courseId}/`, config)
+        // console.log('requestss: ')
+        router.push({ name: 'index'})
 
-        })
+    })
 
-        .catch(error => {
-            console.log(`ERRO AO DELETAR O CURSO: ${error}`)
-            errorMessage.value = `Curso inexistente`
-        })
+    .catch(error => {
+        console.log(`ERRO AO DELETAR O CURSO: ${error}`)
+        errorMessage.value = `Curso inexistente`
+    })
 })
 
 </script>
