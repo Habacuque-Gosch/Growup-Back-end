@@ -1,8 +1,8 @@
 <template>
 
-<div class="tab-pane fade show active" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+<!-- <div class="tab-pane fade show active" id="pills-register" role="tabpanel" aria-labelledby="tab-register"> -->
 
-        <form @submit.prevent="createUser" >
+        <form @submit.prevent="createUser" class="form-control">
             <p>{{ errorMessage }}</p>
             <!-- Name input -->
             <div data-mdb-input-init class="form-outline mb-4">
@@ -44,10 +44,10 @@
             </div>
 
             <!-- Submit button -->
-            <button class="btn btn-primary btn-block mb-3">Resgister account</button>
+            <button class="btn btn-primary">Resgister account</button>
             
         </form>
-</div>
+<!-- </div> -->
 
 </template>
 
@@ -99,7 +99,6 @@ export default {
             errorMessage
         }
     }
-
 }
 
 

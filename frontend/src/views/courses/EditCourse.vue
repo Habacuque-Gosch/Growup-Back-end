@@ -1,12 +1,12 @@
 <template>
 
-    <h1>Editar Course</h1>
+    <h1>Editar curso</h1>
     <br>
-    <p>aaa {{ courseData }}</p>
+    <p>{{ DataCourseEdit }}</p>
     <form @submit.prevent="editCourse" class="form-control row g-2 pt-4 pb-4">
 
         <label class="form-label">Titulo</label>
-        <input type="text" placeholder="Titulo do curso" v-model="editCourseData.title" value="" required style="height: 60px; border-radius: 5px;">
+        <input type="text" placeholder="Titulo do curso" v-model="editCourseData.title" required style="height: 60px; border-radius: 5px;">
         <br>
         <label class="form-label">Slug</label>
         <input type="text" placeholder="Slug do curso" v-model="editCourseData.slug" value="" required style="height: 60px; border-radius: 5px;">
@@ -16,16 +16,18 @@
 
         <button class="btn btn-success mt-4">Salvar alterações</button>
         <br>
-        <p v-if="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</p>
+        <!-- <p v-if="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</p> -->
 
     </form>
 
 </template>
 
 <script>
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue'
 import { baseAPI } from '@/api/axios_api'
 import { useRouter, useRoute } from 'vue-router';
+
+
 
 export default {
     setup(){
@@ -35,8 +37,11 @@ export default {
         const courseRoute = useRoute()
         const router = useRouter()
         const courseId = courseRoute.params.id
-        
-        var courseData = ''
+        const DataCourseEdit = {
+            id: '',
+            title: '',
+            slug: ''
+        }
 
         const editCourse = async () => {
             try {
@@ -58,24 +63,26 @@ export default {
             }
         }
 
-        courseData = baseAPI.get(`courses/${courseId}/`)
+        const courseData = baseAPI.get(`v2/courses/${courseId}/`)
         .then(course => {
-            courseData = course.data
-            console.log(courseData)
+            DataCourseEdit.id = course.data.id
+            DataCourseEdit.title = course.data.title
+            DataCourseEdit.slug = course.data.slug
+            // console.log(DataCourseEdit)
             // router.push({name: 'edit_course', params: {id: courseId}})
-            return courseData
+            return {DataCourseEdit}
         })
         .catch(error => {
             errorMessage.value = 'Curso inexistente'
             console.log('error: ', error)
             router.push({name: 'index'})
         })
-
+        
         return {
             editCourseData,
             errorMessage,
             editCourse,
-            courseData
+            DataCourseEdit
         }
     }
 }
