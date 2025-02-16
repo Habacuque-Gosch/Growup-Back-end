@@ -21,7 +21,7 @@ const courseId = courseRoute.params.id
 console.log(courseId)
 
 onMounted(()=> {
-    baseAPI.get(`courses/${courseId}/`)
+    baseAPI.get(`v2/courses/${courseId}/`)
         .then(response => {
 
             console.log('data: ', response.data.title)

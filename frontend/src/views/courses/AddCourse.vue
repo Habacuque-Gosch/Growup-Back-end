@@ -35,7 +35,7 @@ export default {
 
         const addCourse = async () => {
             try {
-                const response = await baseAPI.get('courses/1/', {
+                const response = await baseAPI.get('v2/courses/1/', {
                     params:{
                         title: newCourse.value.title,
                         slug: newCourse.value.slug,

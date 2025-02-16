@@ -46,7 +46,7 @@ export default {
                         Authorization: 'Token c2ef737289fabeae006a6b01c9ecb40aa088d046',
                     }
                 }
-                await baseAPI.put(`courses/${courseId}/`, editCourseData.value, config)
+                await baseAPI.put(`v2/courses/${courseId}/`, editCourseData.value, config)
                 // console.log('requestss: ')
                 router.push({ name: 'index'})
 

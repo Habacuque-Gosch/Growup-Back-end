@@ -30,7 +30,7 @@
     const courseData = ref({})
 
     onMounted(()=> {
-        baseAPI.get(`courses/${courseId}?format=json`)
+        baseAPI.get(`v2/courses/${courseId}?format=json`)
             .then(res => {
 
                 courseData.value = res.data
