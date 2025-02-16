@@ -30,8 +30,8 @@
 
             <!-- Repeat Password input -->
             <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-                <input type="password" id="registerrepeatpassword" class="form-control" />
+                <label class="form-label">Repeat password</label>
+                <input type="password" id="registerrepeatpassword" v-model="password_repeat" class="form-control" />
             </div>
 
             <!-- Checkbox -->
@@ -61,16 +61,15 @@ import { useRouter } from 'vue-router';
 export default {
     setup(){
         const newUser = ref({full_name: '', username: '', email: '', password: ''})
+        const password_repeat = ref('')
         const errorMessage = ref('')
         const router = useRouter()
-        const password_repeat = document.getElementById('registerrepeatpassword')
 
         console.log(password_repeat)
 
         const createUser = async()=> {
             try {
-
-                if(newUser.value.password == password_repeat){
+                if(newUser.value.password == password_repeat.value){
 
                     let config = {
                         headers: {
@@ -96,6 +95,7 @@ export default {
         return {
             newUser,
             createUser,
+            password_repeat,
             errorMessage
         }
     }
