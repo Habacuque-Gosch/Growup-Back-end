@@ -1,7 +1,7 @@
 
 <template>
 
-    <h1>Bem vindo(a)</h1>
+    <h1>Bem vindo(a) {{  }}</h1>
     <div>
         <form action="" class=" input-group mb-3 d-flex flex-row bd-highlight mb-3" method="POST">
 
@@ -34,22 +34,29 @@
 </template>
 
 <script>
-    import { baseAPI } from '@/api/axios_api'
+import { baseAPI } from '@/api/axios_api'
+import { useRoute } from 'vue-router';
 
-    export default {
-        data() {
-            return {
-                apiData: [],
-            }
-        },
-        mounted() {
-            baseAPI.get('v2/courses/')
-            .then(res => {
-                this.apiData = res.data.results
-            })
-            .catch(err => {
-                console.log('erro get courses API: ' + err)
-            })
+export default {
+    data() {
+
+        const router = useRoute()
+
+        console.log(router)
+
+        return {
+
+            apiData: [],
         }
+    },
+    mounted() {
+        baseAPI.get('v2/courses/')
+        .then(res => {
+            this.apiData = res.data.results
+        })
+        .catch(err => {
+            console.log('erro get courses API: ' + err)
+        })
     }
+}
 </script>
