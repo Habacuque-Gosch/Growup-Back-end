@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password, check_password
+from rest_framework.authtoken.models import Token
+
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -23,7 +25,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         # password_user_save = check_password(password=password_value, encoded=password_user)
         new_user.set_password(password_value)
         new_user.save()
-    
+        token = Token.objects.create(user=new_user)
+        token.save()
         return new_user
     
 
