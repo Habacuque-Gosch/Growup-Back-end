@@ -25,98 +25,46 @@ from rest_framework import generics
 # from django.conf import settings
 
 
-# def home(request):
-#     ''' Realiza o login do usuario na aplicação '''
+# def send_email_welcome(request, user):
 
-#     user = request.user
+#     print("######### SendEmailWelcome #########")
 
-#     # if user.is_authenticated:
-#         # return redirect('index_jobs')
-
-# def login_user(request):
-#     ''' Realiza o login do usuario na aplicação '''
-
-#     user = request.user
-
-#     if user.is_authenticated:
-#         return redirect('index_jobs')
+#     user = User.objects.get(username=user)
     
-#     form = LoginForms()
-#     if request.method == 'POST':
-#         form = LoginForms(request.POST)
-
-#         if form.is_valid():
-#             nome = form["nome_login"].value()
-#             senha = form["senha_login"].value()
-
-#             try:
-
-#                 user_active = User.objects.get(username=nome)
-
-#                 if user_active.is_active:
-
-#                     usuario = auth.authenticate(
-#                         request,
-#                         username=nome,
-#                         password=senha
-#                     )
-#                     if usuario is not None:
-#                         auth.login(request, usuario)
-#                         return redirect('index_jobs')
-#                     else:
-#                         messages.error(request, "usuário ou senha incorreto")
-#                         return redirect('login')
-                
-#                 messages.error(request, "Conta desativada, entre em contato com o suporte: @habacuke14@gmail.com")
-#                 return redirect('login')
-        
-#             except:
-#                 messages.error(request, "usuário ou senha incorreto")
-#                 return redirect('login')
-
-
-#     return render(request, 'usuarios/login/login.html', {"form": form})
-
-# # def send_email_welcome(request, user):
-
-# #     print("######### SendEmailWelcome #########")
-
-# #     user = User.objects.get(username=user)
+#     message = render_to_string("emails/welcome/welcome.html", {'user': user.username})
     
-# #     message = render_to_string("emails/welcome/welcome.html", {'user': user.username})
-    
-# #     text_content = strip_tags(message)
-# #     mail_subject = 'Bem-vindo(a) à Freelaworks'
-# #     email = EmailMultiAlternatives(mail_subject, text_content, settings.EMAIL_HOST_USER, [user.email])
-# #     email.attach_alternative(content=message, mimetype='text/html')
-# #     if email.send():
-# #         messages.success(request, f'Bem vindo(a), {str(user)}')
-# #     else:
-# #         messages.error(
-# #             request, f'Problema ao enviar e-mail para {user.email}, verifique se você digitou corretamente.')
+#     text_content = strip_tags(message)
+#     mail_subject = 'Bem-vindo(a) à Freelaworks'
+#     email = EmailMultiAlternatives(mail_subject, text_content, settings.EMAIL_HOST_USER, [user.email])
+#     email.attach_alternative(content=message, mimetype='text/html')
+#     if email.send():
+#         messages.success(request, f'Bem vindo(a), {str(user)}')
+#     else:
+#         messages.error(
+#             request, f'Problema ao enviar e-mail para {user.email}, verifique se você digitou corretamente.')
 
-# # def activate_account(request, uidb64, token):
+# def activate_account(request, uidb64, token):
 
-# #     try:
-# #         uid = force_str(urlsafe_base64_decode(uidb64))
-# #         user = User.objects.get(pk=uid)
-# #     except Exception:
-# #         user = None
+#     try:
+#         uid = force_str(urlsafe_base64_decode(uidb64))
+#         user = User.objects.get(pk=uid)
+#     except Exception:
+#         user = None
 
-# #     if user is not None and account_activation_token.check_token(user, token):
-# #         user.is_active = True
-# #         user.save()
-# #         send_email_welcome(request, user)
-# #         messages.success(request, "Obrigado(a) pela confirmação do seu e-mail. Agora você pode fazer login na sua conta.")
+#     if user is not None and account_activation_token.check_token(user, token):
+#         user.is_active = True
+#         user.save()
+#         send_email_welcome(request, user)
+#         messages.success(request, "Obrigado(a) pela confirmação do seu e-mail. Agora você pode fazer login na sua conta.")
 
-# #         return redirect('login')
+#         return redirect('login')
 
-# #     else:
-# #         messages.error(request, "O link de ativação é inválido!")
+#     else:
+#         messages.error(request, "O link de ativação é inválido!")
 
-# #     return redirect('login')
+#     return redirect('login')
 
-# # def activateEmail(request, user, to_email):
+# def activateEmail(request, user, to_email):
 #     mail_subject = "Confirmação de cadastro"
 
 #     print("######### activateEmail #########")
