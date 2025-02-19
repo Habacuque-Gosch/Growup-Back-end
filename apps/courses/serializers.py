@@ -30,10 +30,11 @@ class CourseSerializer(serializers.ModelSerializer):
             'id',
             'title',
             'slug',
+            'user',
             'creation',
             'update',
             'available',
-            'reviews'
+            'reviews',
         )
 
 

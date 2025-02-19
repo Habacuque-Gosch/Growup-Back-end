@@ -28,6 +28,13 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         token = Token.objects.create(user=new_user)
         token.save()
         return new_user
-    
 
+class GetUserByToken(serializers.ModelSerializer):
+    class Meta: 
+        model = get_user_model()
+        fields = '__all__'
+
+    # def get_user(self, token):
+        # current_user = Token.objects.get(key=token)
+        # return current_user
 

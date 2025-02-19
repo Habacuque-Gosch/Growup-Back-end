@@ -3,10 +3,11 @@ from .views import *
 
 
 
-urlpatterns = [
+urlpatterns = [ 
     # path('', home, name = 'home'),
     # path('login-user/', login_user, name = 'login'),
     path('register-user/', register_user, name = 'register'),
+    path('get-user-by-token/<str:token>/', GetUserView.as_view(), name = 'get_user_by_token'),
     path('logout/', logout, name = 'logout'),
     # path('active-account/<uidb64>/<token>/', activate_account, name='activate_account'), 
     # path('desactivate-account/', desactivate_account, name = 'desactivate_account'),

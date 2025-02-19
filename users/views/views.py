@@ -1,12 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
 from django.contrib import auth, messages
-from ..serializers import UserRegistrationSerializer
+from ..serializers import UserRegistrationSerializer, GetUserByToken
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework import generics
+
+
 # from apps.usuarios.forms import ChangePassForms, ForgetMyPassForms, SendCodeForms
 # from django.core.mail import EmailMultiAlternatives
 # from ..tokens import account_activation_token
@@ -139,12 +144,30 @@ def register_user(request):
 
     serializer = UserRegistrationSerializer(data=request.data)
     if serializer.is_valid():
-        print('SERIALIZER: ', serializer)
-        print('REQUESTDATA: ', request.data)
         serializer.create_user(validate_data=request.data)
         return Response(serializer.data)
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class GetUserView(generics.ListAPIView):
+    queryset = get_user_model().objects.all()
+    serializer_class = GetUserByToken
+    
+    def get_queryset(self):
+        # token = self.request.headers.get('key')
+        token = self.kwargs.get('token')
+        if token:
+            # self.lookup_field = 'key'
+            user_token = Token.objects.get(key=token)
+            print('USER', user_token.user.id)
+            user = self.queryset.filter(id=user_token.user.id)
+            print('DATA', user.values())
+            # print('USER', user.username)
+            return user
+
+        # return self.queryset.all()
+
     # form = CadastroForms()
     # if request.method == 'POST':
     #     form = CadastroForms(request.POST)
