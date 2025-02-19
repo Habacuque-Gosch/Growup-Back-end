@@ -158,12 +158,8 @@ class GetUserView(generics.ListAPIView):
         # token = self.request.headers.get('key')
         token = self.kwargs.get('token')
         if token:
-            # self.lookup_field = 'key'
             user_token = Token.objects.get(key=token)
-            print('USER', user_token.user.id)
             user = self.queryset.filter(id=user_token.user.id)
-            print('DATA', user.values())
-            # print('USER', user.username)
             return user
 
         # return self.queryset.all()
