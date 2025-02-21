@@ -5,13 +5,15 @@ from rest_framework.generics import get_object_or_404
 from rest_framework import mixins, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from rest_framework import permissions
+from ..permissions import IsSuperuser
 
 
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all().order_by('-id')
     serializer_class = CourseSerializer
+    permission_classes = (IsSuperuser, permissions.DjangoModelPermissions,)
 
     @action(detail=True, methods=['GET'])
     def reviews(self, request, pk=None):
