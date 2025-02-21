@@ -43,7 +43,7 @@ class CourseSerializer(serializers.ModelSerializer):
         )
 
     def get_media_review(self, obj):
-        media = obj.reviews.aggregate(Avg('review')).get('review_avg')
+        media = obj.reviews.aggregate(Avg('review')).get('review__avg')
 
         if media is None:
             return 0
