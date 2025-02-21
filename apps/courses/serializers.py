@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import Course, Review
+from django.db.models import Avg
+
 
 
 
@@ -24,6 +26,8 @@ class CourseSerializer(serializers.ModelSerializer):
     # PRIMARYKEY RELATED FIELD - :)
     reviews = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
+    media_review = serializers.SerializerMethodField()
+
     class Meta:
         model = Course
         fields = (
@@ -35,6 +39,13 @@ class CourseSerializer(serializers.ModelSerializer):
             'update',
             'available',
             'reviews',
+            'media_review'
         )
 
+    def get_media_review(self, obj):
+        media = obj.reviews.aggregate(Avg('review')).get('review_avg')
+
+        if media is None:
+            return 0
+        return round(media*2)/2
 
