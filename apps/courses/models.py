@@ -34,7 +34,6 @@ class Course(Base):
 class Review(Base):
     course = models.ForeignKey(Course, related_name='reviews', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    email = models.EmailField()
     comment = models.CharField(max_length=255, blank=True, default='')
     review = models.DecimalField(max_digits=2, decimal_places=1)
     user = models.ForeignKey(
@@ -48,7 +47,7 @@ class Review(Base):
     class Meta:
         verbose_name = 'review'
         verbose_name_plural = 'reviews'
-        unique_together = ['email', 'course']
+        unique_together = ['course']
         ordering = ['-id']
 
     def __str__(self):
