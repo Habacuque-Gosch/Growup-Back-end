@@ -26,7 +26,7 @@ class CourseSerializer(serializers.ModelSerializer):
     # PRIMARYKEY RELATED FIELD - :)
     reviews = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
-    media_review = serializers.SerializerMethodField()
+    # media_review = serializers.SerializerMethodField()
 
     class Meta:
         model = Course
@@ -39,13 +39,12 @@ class CourseSerializer(serializers.ModelSerializer):
             'update',
             'available',
             'reviews',
-            'media_review'
         )
 
-    def get_media_review(self, obj):
-        media = obj.reviews.aggregate(Avg('review')).get('review__avg')
+    # def get_media_review(self, obj):
+    #     media = obj.reviews.aggregate(Avg('review')).get('review__avg')
 
-        if media is None:
-            return 0
-        return round(media*2)/2
+    #     if media is None:
+    #         return 0
+    #     return round(media*2)/2
 
