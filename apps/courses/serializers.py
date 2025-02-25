@@ -48,3 +48,4 @@ class CourseSerializer(serializers.ModelSerializer):
     #         return 0
     #     return round(media*2)/2
 
+ 
