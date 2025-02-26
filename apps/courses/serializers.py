@@ -22,7 +22,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     # HYPERLINK RELATED FIELD - ;-;
     # reviews = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='review-detail')
-
+ 
     # PRIMARYKEY RELATED FIELD - :)
     reviews = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
