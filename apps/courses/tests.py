@@ -14,4 +14,3 @@ print(f'STATUS CODE: {courses.status_code}')
 
 results = jsonpath.jsonpath(courses.json(), 'results[0]')
 print(results)
- 
