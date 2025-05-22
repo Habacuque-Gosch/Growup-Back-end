@@ -90,6 +90,6 @@ class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ['id', 'user', 'name', 'age', 'bio', 'sexual_orientation', 'photo', 'friends', 'establishments_save', 'preferences']
+        fields = ['id', 'user', 'name', 'age', 'bio', 'sexual_orientation', 'photo', 'courses_save', 'preferences']
         read_only_fields = ['user']
 
