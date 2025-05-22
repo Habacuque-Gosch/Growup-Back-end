@@ -29,8 +29,8 @@ urlpatterns += i18n_patterns(
     path('api/v1/', include('apps.users.urls')),
     path('api/v1/', include('apps.courses.urls')),
     # path('auth/', include('rest_framework.urls')),
-    path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh')
+    path('api/v1/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/v1/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh')
 )
 
 

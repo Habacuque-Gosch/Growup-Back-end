@@ -2,11 +2,12 @@ from rest_framework import generics
 from apps.courses.models import Course, Review
 from apps.courses.serializers import CourseSerializer, ReviewSerializer
 from rest_framework.generics import get_object_or_404
-from rest_framework import mixins, viewsets
+from rest_framework import mixins, viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions, AllowAny
 from ..permissions import IsSuperuser, IsOwnerOrReadOnly
+
 
 
 
@@ -22,6 +23,25 @@ class CourseViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
+    def bulk(self, request):
+        """
+        Retorna múltiplos cursos baseado em uma lista de IDs:
+        /api/courses/bulk/?ids=3,5,7
+        """
+        ids_param = request.query_params.get('ids', '')
+        if not ids_param:
+            return Response({"detail": "Parâmetro 'ids' é obrigatório."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            ids = [int(id_str) for id_str in ids_param.split(',') if id_str.isdigit()]
+        except ValueError:
+            return Response({"detail": "IDs inválidos."}, status=status.HTTP_400_BAD_REQUEST)
+
+        cursos = self.queryset.filter(id__in=ids)
+        serializer = self.get_serializer(cursos, many=True)
+        return Response(serializer.data)
 
     # @action(detail=True, methods=['GET'])
     # def reviews(self, request, pk=None):

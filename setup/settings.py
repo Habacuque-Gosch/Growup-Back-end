@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 from corsheaders.defaults import default_headers
+from datetime import timedelta
 import sentry_sdk
 from dotenv import load_dotenv
 load_dotenv()
@@ -236,6 +237,14 @@ REST_FRAMEWORK = {
         'user': '50/min'
     },
 }
+
+
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # ou mais
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+#     'ROTATE_REFRESH_TOKENS': True,
+#     'BLACKLIST_AFTER_ROTATION': True,
+# }
 
 # LOGIN_REDIRECT_URL = '/'
 # lOGOUT_REDIRECT_URL = '/'
