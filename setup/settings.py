@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
 
-    'apps.destinations.apps.DestinationsConfig',
+    'apps.courses.apps.CoursesConfig',
 
     # 'django.contrib.sites',
     # 'allauth',
