@@ -51,7 +51,7 @@ class UserSerializer(serializers.ModelSerializer):
         # return current_user
 
 class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
-    username_field = get_user_model().EMAIL_FIELD  # por padrão é 'email', então funciona bem
+    username_field = get_user_model().EMAIL_FIELD
 
     def validate(self, attrs):
         email = attrs.get("email")

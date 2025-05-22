@@ -32,6 +32,15 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         fields = ['id', 'title', 'slug', 'content', 'user', 'creation', 'update', 'available', 'reviews',]
 
+        def validate_slug(self, value):
+            if self.instance:
+                if Course.objects.exclude(id=self.instance.id).filter(slug=value).exists():
+                    raise serializers.ValidationError('Esse slug já está em uso por outro curso.')
+            else:
+                if Course.objects.filter(slug=value).exists():
+                    raise serializers.ValidationError('Esse slug já está em uso por outro curso.')
+            return value
+
     # def get_media_review(self, obj):
     #     media = obj.reviews.aggregate(Avg('review')).get('review__avg')
 
