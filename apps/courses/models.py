@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from datetime import datetime
 
 
+
+
 class Base(models.Model):
     creation = models.DateTimeField(default=datetime.now)
     update = models.DateField(auto_now=True)
@@ -10,7 +12,6 @@ class Base(models.Model):
 
     class Meta:
         abstract = True
-
 
 class Course(Base):
     title = models.CharField(max_length=255, blank=False, null=False, default='')
@@ -25,7 +26,6 @@ class Course(Base):
 
     def __str__(self):
         return self.title
-    
 
 class Review(Base):
     course = models.ForeignKey(Course, related_name='reviews', on_delete=models.CASCADE)
@@ -48,3 +48,4 @@ class Review(Base):
 
     def __str__(self):
         return f'{self.name} evaluated the course {self.course} with a gradereview {self.review}'
+    
