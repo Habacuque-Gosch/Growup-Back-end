@@ -1,11 +1,10 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
-
+from datetime import datetime
 
 
 class Base(models.Model):
-    creation = models.DateField(auto_created=True)
+    creation = models.DateTimeField(default=datetime.now)
     update = models.DateField(auto_now=True)
     available = models.BooleanField(default=True)
 
@@ -16,17 +15,12 @@ class Base(models.Model):
 class Course(Base):
     title = models.CharField(max_length=255, blank=False, null=False, default='')
     slug = models.CharField(max_length=100, unique=True)
-    user = models.ForeignKey(
-        to=get_user_model(),
-        on_delete=models.CASCADE,
-        null=True,
-        blank=False,
-        related_name="user_owner",
-    )
+    content = models.TextField(max_length=750, default='')
+    user = models.ForeignKey(to=get_user_model(), on_delete=models.CASCADE, null=True, blank=False, related_name="user_owner")
 
     class Meta:
-        verbose_name = 'Course'
-        verbose_name_plural = 'Courses'
+        verbose_name = 'course'
+        verbose_name_plural = 'courses'
         ordering = ['-id']
 
     def __str__(self):

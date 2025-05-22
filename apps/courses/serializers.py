@@ -30,16 +30,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = (
-            'id',
-            'title',
-            'slug',
-            'user',
-            'creation',
-            'update',
-            'available',
-            'reviews',
-        )
+        fields = ['id', 'title', 'slug', 'content', 'user', 'creation', 'update', 'available', 'reviews',]
 
     # def get_media_review(self, obj):
     #     media = obj.reviews.aggregate(Avg('review')).get('review__avg')

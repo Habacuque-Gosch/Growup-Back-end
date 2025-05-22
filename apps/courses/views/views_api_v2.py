@@ -11,17 +11,17 @@ from ..permissions import IsSuperuser, IsOwnerOrReadOnly
 
 
 class CourseViewSet(viewsets.ModelViewSet):
-    queryset = Course.objects.all().order_by('-id')
+    queryset = Course.objects.all().filter(available=True).order_by('-id')
     serializer_class = CourseSerializer
-    permission_classes = (IsAuthenticated, DjangoModelPermissions)
+    permission_classes = [IsAuthenticated]
 
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             return [IsOwnerOrReadOnly()]
-        return [IsAuthenticated]
+        return [IsAuthenticated()]
     
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(user=self.request.user)
 
     # @action(detail=True, methods=['GET'])
     # def reviews(self, request, pk=None):
