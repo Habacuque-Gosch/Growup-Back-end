@@ -1,28 +1,59 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
-from django.contrib.sites.shortcuts import get_current_site
-# from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
-from django.contrib import auth, messages
-from ..serializers import UserRegistrationSerializer, GetUserByToken
+from ..serializers import RegisterSerializer, UserSerializer, EmailTokenObtainPairSerializer, ProfileSerializer
+# from ..models import Profile
+# from ..permissions import IsSuperuser
+# from rest_framework import permissions
+# from rest_framework.authtoken.models import Token
+# from rest_framework import generics
+from rest_framework.decorators import action
+from rest_framework import viewsets, status, mixins
 from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.views import APIView
+from rest_framework_simplejwt.views import TokenObtainPairView
+# from rest_framework.exceptions import ValidationError
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
-# from apps.usuarios.forms import ChangePassForms, ForgetMyPassForms, SendCodeForms
-# from django.core.mail import EmailMultiAlternatives
-# from ..tokens import account_activation_token
-# from django.template.loader import render_to_string
-# from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-# from django.utils.encoding import force_bytes, force_str
-# from django.utils.html import strip_tags
-# from apps.usuarios.models import Profile
-# from apps.vagas.models import Job 
-# from django.core.mail import send_mail
-# from django.conf import settings
+
+
+class UserViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+    @action(detail=False, methods=['get', 'patch'], url_path='me')
+    def me(self, request):
+        user = request.user
+
+        try:
+
+            if request.method == 'GET':
+                serializer = UserSerializer(user)
+                return Response(serializer.data)
+
+            elif request.method == 'PATCH':
+                serializer = UserSerializer(user, data=request.data, partial=True)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        except get_user_model().DoesNotExist:
+            return Response({"detail":"Usuário não encontrado"}, status=status.HTTP_404_NOT_FOUND)
+
+class RegisterView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            return Response({'message': 'Usuário criado com sucesso'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CustomEmailTokenObtainPairView(TokenObtainPairView):
+    serializer_class = EmailTokenObtainPairSerializer
 
 
 # def send_email_welcome(request, user):
@@ -86,29 +117,6 @@ from rest_framework import generics
 #         messages.error(
 #             request, f'Problema ao enviar e-mail para {to_email}, verifique se você digitou corretamente.')
 
-@api_view(["POST"])
-def register_user(request):
-    ''' Realiza o cadastro de um novo usuario no sistema '''
-
-    serializer = UserRegistrationSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.create_user(validate_data=request.data)
-        return Response(serializer.data)
-    
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class GetUserView(generics.ListAPIView):
-    queryset = get_user_model().objects.all()
-    serializer_class = GetUserByToken
-    
-    def get_queryset(self):
-        # token = self.request.headers.get('key')
-        token = self.kwargs.get('token')
-        if token:
-            user_token = Token.objects.get(key=token)
-            user = self.queryset.filter(id=user_token.user.id)
-            return user
 
         # return self.queryset.all()
 
@@ -149,7 +157,6 @@ class GetUserView(generics.ListAPIView):
     # return render(request, 'usuarios/register/register.html', {"form": form})
 
 
-
 # @login_required(login_url='login')
 # def desactivate_account(request):
 
@@ -162,13 +169,6 @@ class GetUserView(generics.ListAPIView):
 #     user_desactive.save()
 
 #     return redirect('/')
-
-@login_required(login_url='login')
-def logout(request):
-    ''' Realiza o logout do usuario na aplicação '''
-    # messages.success(request, "Logout efetuado com sucesso")
-    auth.logout(request)
-    return redirect('login')
 
 # @login_required(login_url='login')
 # def change_pass(request):
