@@ -12,7 +12,6 @@ def create_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=UserProfile)
 def create_user_preferences(sender, instance, created, **kwargs):
     if created and not instance.preferences:
-        print('rodando triggers')
         preferences = UserPreference.objects.create(user=instance.user)
         instance.preferences = preferences
         instance.save()

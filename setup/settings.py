@@ -199,7 +199,8 @@ AUTHENTICATION_BACKENDS = (
 # CORS_ORIGINS_ALLOW_aLL = True
 CORS_ALLOW_ORIGINS = [
     'http://127.0.0.1:8000',
-    'http://localhost:5173'
+    'http://localhost:5173',
+    'http://10.0.2.2:8000',
 ]
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
@@ -210,6 +211,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:8000',
     'http://localhost:5173',
+    'http://10.0.2.2:8000',
 ]
 
 REST_FRAMEWORK = {
@@ -240,7 +242,7 @@ REST_FRAMEWORK = {
 
 
 # SIMPLE_JWT = {
-#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # ou mais
+#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
 #     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 #     'ROTATE_REFRESH_TOKENS': True,
 #     'BLACKLIST_AFTER_ROTATION': True,
