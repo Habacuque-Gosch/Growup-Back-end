@@ -29,7 +29,7 @@ class ProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.
             
             if request.method == 'GET':
                 serializer = ProfileSerializer(profile)
-                return Response(serializer.data)
+                return Response(serializer.data, context={'request': request})
 
             elif request.method == 'PATCH':
                 serializer = ProfileSerializer(profile, data=request.data, partial=True)

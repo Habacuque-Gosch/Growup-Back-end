@@ -86,8 +86,19 @@ class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
             "password": data.get("password")
         }
 
+class AbsoluteImageField(serializers.ImageField):
+    def to_representation(self, value):
+        request = self.context.get('request')
+        photo_url = super().to_representation(value)
+
+        if request is not None:
+            return request.build_absolute_uri(photo_url)
+        return photo_url
 
 class ProfileSerializer(serializers.ModelSerializer):
+
+    photo = AbsoluteImageField()
+
     class Meta:
         model = UserProfile
         fields = ['id', 'user', 'name', 'age', 'bio', 'sexual_orientation', 'photo', 'courses_save', 'preferences']
