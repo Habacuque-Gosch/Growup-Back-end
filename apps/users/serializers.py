@@ -5,6 +5,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
 from .models import UserProfile
+from rest_framework import status
 
 
 
@@ -58,14 +59,19 @@ class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
         password = attrs.get("password")
 
         try:
-            user = get_user_model().objects.get(email=email)
+            user_instance = get_user_model().objects.get(email=email)
         except get_user_model().DoesNotExist:
-            raise serializers.ValidationError({"email": "Usuário com este email não existe."})
+            raise serializers.ValidationError(
+                {"detail": "E-mail ou senha inválidos"},
+                code=status.HTTP_401_UNAUTHORIZED
+            )
 
-        user = authenticate(username=user.username, password=password)
-
+        user = authenticate(username=user_instance.email, password=password)
         if not user:
-            raise serializers.ValidationError({"password": "Senha incorreta."})
+            raise serializers.ValidationError(
+                {"detail": "E-mail ou senha inválidos"},
+                code=status.HTTP_401_UNAUTHORIZED
+            )
 
         data = super().get_token(user)
         return {
