@@ -28,8 +28,8 @@ class ProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.
             profile =  UserProfile.objects.get(user=current_user)
             
             if request.method == 'GET':
-                serializer = ProfileSerializer(profile)
-                return Response(serializer.data, context={'request': request})
+                serializer = ProfileSerializer(profile, context={'request': request})
+                return Response(serializer.data)
 
             elif request.method == 'PATCH':
                 serializer = ProfileSerializer(profile, data=request.data, partial=True)
