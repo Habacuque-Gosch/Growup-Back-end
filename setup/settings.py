@@ -26,6 +26,7 @@ SITE_ID = 2
 
 # Application definition
 INSTALLED_APPS = [
+    'jazzmin',
     'apps.users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
