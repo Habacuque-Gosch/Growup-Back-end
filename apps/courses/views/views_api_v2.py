@@ -8,13 +8,19 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions, AllowAny
 from ..permissions import IsSuperuser, IsOwnerOrReadOnly
 
+from rest_framework.pagination import PageNumberPagination
 
 
+class CoursePagination(PageNumberPagination):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all().filter(available=True).order_by('-id')
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = CoursePagination
 
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
