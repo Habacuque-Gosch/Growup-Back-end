@@ -13,6 +13,12 @@ class Base(models.Model):
     class Meta:
         abstract = True
 
+class Category(models.Model):
+    name = models.CharField(max_length=100, blank=False, null=False, default='')
+
+    def __str__(self):
+        return self.name
+
 class Course(Base):
 
     LEVELS = [
@@ -20,12 +26,14 @@ class Course(Base):
         ("INTERMEDIÁRIO","Intermediário"),
         ("AVANÇADO","Avançado"),
     ]
+
     title = models.CharField(max_length=255, blank=False, null=False, default='')
     slug = models.CharField(max_length=100, unique=True)
     content = models.TextField(max_length=750, default='')
     # photo = models.ImageField(upload_to="course/thumbnail/%Y/%m/%d/", blank=True, null=True)
     duration = models.IntegerField(default=5, blank=False)
     level = models.CharField(max_length=100, choices=LEVELS, blank=False, null=False, default='INICIANTE')
+    category = models.OneToOneField(Category, on_delete=models.SET_NULL, blank=True, null=True)
     user = models.ForeignKey(to=get_user_model(), on_delete=models.CASCADE, null=True, blank=False, related_name="user_owner")
 
     class Meta:
