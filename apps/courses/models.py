@@ -33,7 +33,7 @@ class Course(Base):
     # photo = models.ImageField(upload_to="course/thumbnail/%Y/%m/%d/", blank=True, null=True)
     duration = models.IntegerField(default=5, blank=False)
     level = models.CharField(max_length=100, choices=LEVELS, blank=False, null=False, default='INICIANTE')
-    category = models.OneToOneField(Category, on_delete=models.SET_NULL, blank=True, null=True)
+    category = models.ForeignKey(to=Category, on_delete=models.DO_NOTHING, null=True, blank=True, default='')
     user = models.ForeignKey(to=get_user_model(), on_delete=models.CASCADE, null=True, blank=False, related_name="user_owner")
 
     class Meta:

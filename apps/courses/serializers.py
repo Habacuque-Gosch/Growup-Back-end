@@ -32,7 +32,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ['id', 'title', 'slug', 'content', 'duration', 'level', 'user', 'creation', 'update', 'available', 'reviews',]
+        fields = ['id', 'title', 'slug', 'content', 'duration', 'level', 'category', 'user', 'creation', 'update', 'available', 'reviews',]
 
         def validate_slug(self, value):
             if self.instance:
