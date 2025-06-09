@@ -1,0 +1,95 @@
+[
+  {
+    "model": "courses.course",
+    "pk": 10,
+    "fields": {
+      "title": "Biologia Molecular Básica",
+      "slug": "biologia-molecular-basica",
+      "content": "Curso introdutório sobre os fundamentos da biologia molecular, abordando DNA, RNA, proteínas e suas funções.",
+      "duration": 60,
+      "level": "INICIANTE",
+      "category": null,
+      "enrolled_users": [],
+      "user": null,
+      "creation": "2025-06-09",
+      "update": "2025-06-09",
+      "available": true
+    }
+  },
+  {
+    "model": "courses.module",
+    "pk": 1,
+    "fields": {
+      "course": 10,
+      "title": "Introdução à Biologia Molecular",
+      "order": 1,
+      "creation": "2025-06-09",
+      "update": "2025-06-09",
+      "available": true
+    }
+  },
+  {
+    "model": "courses.module",
+    "pk": 2,
+    "fields": {
+      "course": 10,
+      "title": "Estrutura e Função do DNA",
+      "order": 2,
+      "creation": "2025-06-09",
+      "update": "2025-06-09",
+      "available": true
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 1,
+    "fields": {
+      "module": 1,
+      "title": "O que é Biologia Molecular?",
+      "order": 1,
+      "creation": "2025-06-09",
+      "update": "2025-06-09",
+      "available": true
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 2,
+    "fields": {
+      "module": 1,
+      "title": "Moléculas essenciais para a vida",
+      "order": 2,
+      "creation": "2025-06-09",
+      "update": "2025-06-09",
+      "available": true
+    }
+  },
+  {
+    "model": "courses.content",
+    "pk": 1,
+    "fields": {
+      "lesson": 1,
+      "content_type": "TEXT",
+      "text": "Biologia molecular é o estudo das moléculas essenciais para os processos vitais.",
+      "video_url": null,
+      "order": 1,
+      "creation": "2025-06-09",
+      "update": "2025-06-09",
+      "available": true
+    }
+  },
+  {
+    "model": "courses.content",
+    "pk": 2,
+    "fields": {
+      "lesson": 1,
+      "content_type": "VIDEO",
+      "text": null,
+      "video_url": "https://link-do-video-gerado.com/video1",
+      "order": 2,
+      "creation": "2025-06-09",
+      "update": "2025-06-09",
+      "available": true
+    }
+  }
+]
