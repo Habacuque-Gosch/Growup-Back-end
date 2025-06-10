@@ -8,6 +8,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions, AllowAny
 from ..permissions import IsSuperuser, IsOwnerOrReadOnly
 from rest_framework.pagination import PageNumberPagination
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 
@@ -20,6 +22,10 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all().filter(available=True).order_by('-id')
     permission_classes = [IsAuthenticated]
     pagination_class = CoursePagination
+    lookup_field = 'slug'
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    search_fields = ['title', 'description']
+    # filterset_fields = ['category__slug']
 
     def get_serializer_class(self):
         if self.action == 'retrieve':

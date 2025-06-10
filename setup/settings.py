@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     # "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
-    
+
+    'django_filters',
     'rest_framework',
     'corsheaders',
     # 'rest_framework.authtoken',
