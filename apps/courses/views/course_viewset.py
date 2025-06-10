@@ -24,8 +24,8 @@ class CourseViewSet(viewsets.ModelViewSet):
     pagination_class = CoursePagination
     lookup_field = 'slug'
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
-    search_fields = ['title', 'description']
-    # filterset_fields = ['category__slug']
+    search_fields = ['title', 'content']
+    filterset_fields = ['category', 'slug']
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
